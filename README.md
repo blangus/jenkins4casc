@@ -44,3 +44,9 @@ To create a new docker image on Docker hub, simply tag your commit with a versio
 The repository is setup with Docker autobuild enabled. We build all tags, and master is always built and made available as `latest`. Versioning is based on the convention described in the Docker image versioning strategy section above.
 
 For more information about how Docker Hub autobuild works please consult the [official guide](https://docs.docker.com/docker-hub/builds/).
+
+### Jenkins jobs
+
+Save job config.xml to configs folder. 
+
+http://<>:8080/job/<jobname>/config.xml
