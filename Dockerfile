@@ -1,13 +1,18 @@
 FROM jenkins/jenkins:lts
-LABEL maintainer="man@praqma.net" 
 
-ARG JAVA_OPTS
-ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false ${JAVA_OPTS:-}"
+ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false"
 
-##### JENKINS SETUP. For alpha releases use the experimental update center
-ENV JENKINS_HOME /var/jenkins_home
-
+# Install plugins from plugins.txt file
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
-RUN xargs /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
+
+# Create job folders and move job config to right folder
+USER jenkins
+ARG job_name_1="test"
+ARG job_home="/usr/share/jenkins/ref/" 
+# Create the jobs folder recursively  
+RUN mkdir -p ${job_home}/jobs/${job_name_1}  
+# Add the custom configs to the container  
+COPY /configs/${job_name_1}_config.xml ${job_home}/jobs/${job_name_1}/config.xml 
 
 
