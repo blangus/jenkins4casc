@@ -1,6 +1,8 @@
 # jenkins4casc
 
-Repository for the Praqma custom Docker image using the new [Configuration as Code plugin](https://github.com/jenkinsci/configuration-as-code-plugin).
+Repository for a Jenkins Docker image that automatically installs plugins in plugins.txt and configures them using [Configuration as Code plugin](https://github.com/jenkinsci/configuration-as-code-plugin).
+
+It also loads job config files stored in configs folder and preloads them during startup.
 
 ## How to use the Docker image
 
@@ -45,7 +47,7 @@ The repository is setup with Docker autobuild enabled. We build all tags, and ma
 
 For more information about how Docker Hub autobuild works please consult the [official guide](https://docs.docker.com/docker-hub/builds/).
 
-### Jenkins jobs
+## Jenkins jobs
 
 Save job config.xml to configs folder. 
 
